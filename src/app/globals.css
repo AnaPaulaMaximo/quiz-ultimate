@@ -1,26 +1,169 @@
 @import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Cinzel:wght@600&display=swap'); */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --primary-red: #e50914;         /* Netflix red */
+  --primary-gold: #ffcc00;        /* Spotlight gold */
+  --accent-yellow: #ffd700;
+  --accent-dark: #1c1c1c;
+  --glass: rgba(255, 255, 255, 0.05);
+  --border-glass: rgba(255, 255, 255, 0.15);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: 'Montserrat', sans-serif;
+  --font-title: 'Cinzel', serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-image: url('/cinema-curtain.jpg'); /* Imagem temática */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  @apply antialiased;
+}
+
+/* Modern Glass Card */
+.container-quiz {
+  @apply rounded-2xl shadow-2xl p-10 max-w-2xl w-full mx-auto my-10 border;
+  background: var(--glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+}
+
+/* Modern Title */
+.title-quiz {
+  font-family: var(--font-title);
+  @apply text-4xl md:text-5xl text-center mb-8;
+  color: var(--primary-gold);
+  text-shadow: 2px 2px 6px #000;
+}
+
+/* Input com look futurista */
+.input-field {
+  @apply w-full py-3 px-4 rounded-lg border outline-none transition;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-glass);
+  color: var(--foreground);
+  backdrop-filter: blur(6px);
+}
+
+.input-field::placeholder {
+  color: #bbb;
+}
+
+/* Botões com efeito neon */
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-accent {
+  @apply font-bold py-3 px-6 rounded-lg transition duration-200 hover:scale-105 shadow-lg;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: var(--primary-gold);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #ffdf40;
+  box-shadow: 0 0 10px var(--primary-gold);
+}
+
+.btn-secondary {
+  background: #333;
+  color: #fff;
+}
+
+.btn-success {
+  background: var(--primary-red);
+  color: #fff;
+}
+
+.btn-success:hover {
+  background: #ff3d44;
+}
+
+.btn-accent {
+  background: #222;
+  color: var(--primary-gold);
+  border: 1px solid var(--primary-gold);
+}
+
+.btn-accent:hover {
+  background: var(--primary-gold);
+  color: #000;
+}
+
+/* Questões */
+.question-card {
+  @apply mt-10 p-6 rounded-xl shadow-xl;
+  background: var(--glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(8px);
+}
+
+.question-text {
+  @apply text-2xl font-semibold mb-6;
+  color: var(--primary-gold);
+}
+
+/* Opções */
+.option-button {
+  @apply w-full py-3 px-4 border rounded-lg text-lg transition hover:scale-105;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--primary-gold);
+  color: var(--foreground);
+}
+
+.option-button.selected {
+  background-color: var(--primary-gold);
+  color: #000;
+  font-weight: bold;
+}
+
+/* Resultados */
+.results-card {
+  @apply mt-10 p-6 rounded-xl shadow-xl;
+  background: var(--glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(8px);
+}
+
+.results-title {
+  font-family: var(--font-title);
+  @apply text-3xl text-center mb-6;
+  color: var(--primary-gold);
+}
+
+.results-score {
+  @apply text-xl text-center mb-4;
+  color: var(--foreground);
+}
+
+.result-item {
+  @apply mb-4 p-4 border-b border-gray-600;
+}
+
+.result-question-text,
+.result-answer-text {
+  color: var(--foreground);
+}
+
+.result-status-correct {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.result-status-incorrect {
+  color: #ef4444;
+  font-weight: bold;
 }
